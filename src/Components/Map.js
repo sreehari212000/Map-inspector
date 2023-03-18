@@ -27,7 +27,7 @@ function handleScreenShot(){
         setScreenshot(canvas.toDataURL())
     });
 }
-  // if users doesn't allow to access their location the will be the position
+  // if users doesn't allow to access their location the will be the location shown in the map
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -55,7 +55,7 @@ function handleScreenShot(){
     
     {screenshot && (
         <div>
-          <Screen screenshot={screenshot}/>
+          <Screen screenshot={screenshot} />
 
           <button className='choose-btn' style={{position:'absolute', top:'5%', right:'10px'}} onClick={()=>setScreenshot(null)}>Choose Another Location</button>
         </div>
