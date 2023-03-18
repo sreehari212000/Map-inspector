@@ -4,18 +4,19 @@ import html2canvas from 'html2canvas';
 import Screen from './Screen';
 
 const Map = () => {
-    const mapRef = useRef()
+  const mapRef = useRef()
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [screenshot, setScreenshot] = useState(null)
   useEffect(()=>{
+    // setting the position of map to the users current position
     navigator.geolocation.getCurrentPosition((pos)=>{
       setLatitude(pos.coords.latitude)
       setLongitude(pos.coords.longitude)
     })
   }, [])
 
-//   function to handle screen shot of the map
+//   function to take the image of the visible reg
 function handleScreenShot(){
     html2canvas(mapRef.current, {
         useCORS: true,
@@ -26,7 +27,7 @@ function handleScreenShot(){
         setScreenshot(canvas.toDataURL())
     });
 }
-  
+  // if users doesn't allow to access their location the will be the position
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -37,7 +38,7 @@ function handleScreenShot(){
   return (
     <div>
     <div style={{ height: '94vh', width: '100%' }} ref={mapRef}>
-      <GoogleMapReact onClick={(e)=>console.log(e)} 
+      <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBNYHQ-t4tBRZr-izlJLZvRXyMYG-KAqek" }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
